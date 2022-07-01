@@ -3,7 +3,7 @@
 1. Create a resource group
 2. Create an Azure Container Registry
 3. Create an Azure Container App
-4. Create RBAC and assign role to a resource group no 1.
+4. Create RBAC and assign a contributor role to a resource group no 1.
 5. Create Secret on GitHub > Settings > Secrets > Actions
    1. AZURE_CREDENTIALS
    2. AZURE_RG

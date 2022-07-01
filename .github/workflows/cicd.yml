@@ -4,12 +4,11 @@ name: Trigger auto deployment for containerapps
 on:
   # Automatically trigger it when detected changes in repo
   push:
+    paths:
+      - '!materials/**'
+      - '!README.md'
     branches: 
-      [ main ]
-    paths-ignore:
-      - 'materials/**'
-      - 'README.md'
-      - '.github/**'
+      - main
 
   # Allow manually trigger 
   workflow_dispatch:      
