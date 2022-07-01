@@ -7,6 +7,8 @@ on:
     paths:
       - '!materials/**'
       - '!README.md'
+      - 'app/**'
+      - 'Dockerfile'
     branches: 
       - main
 
@@ -66,4 +68,4 @@ jobs:
             echo "Installing containerapp extension"
             az extension add -n containerapp --yes
             echo "Starting Deploying"
-            az containerapp update -n ${{ secrets.ACA_NAME }} -g ${{ secrets.AZURE_RG }} -i ${{ secrets.ACR_URL }}/nodeapp:${{ steps.date.outputs.date }} --debug
+            az containerapp update -n ${{ secrets.ACA_NAME }} -g ${{ secrets.AZURE_RG }} -i ${{ secrets.ACR_URL }}/nodeapp:${{ needs.build.date.outputs.date }} --debug
