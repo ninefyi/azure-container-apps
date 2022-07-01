@@ -66,4 +66,4 @@ jobs:
             echo "Installing containerapp extension"
             az extension add -n containerapp --yes
             echo "Starting Deploying"
-            az containerapp update -n ${{ secrets.ACA_NAME }} -g ${{ secrets.AZURE_RG }} -i ${{ secrets.ACR_URL }}/nodeapp:${{ steps.date.outputs.date }} --registry-login-server ${{ secrets.ACR_URL }} --registry-username  ${{ secrets.ACR_USER }} --registry-password ${{ secrets.ACR_PWD }} --debug
+            az containerapp update -n ${{ secrets.ACA_NAME }} -g ${{ secrets.AZURE_RG }} -i ${{ secrets.ACR_URL }}/nodeapp:${{ steps.date.outputs.date }} --debug
