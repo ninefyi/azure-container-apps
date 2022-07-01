@@ -1,10 +1,11 @@
 # Prepare Azure resource
 
 1. Create a resource group
-2. Create an Azure Container Registry
-3. Create an Azure Container App
-4. Create RBAC and assign a contributor role to a resource group no 1.
-5. Create Secret on GitHub > Settings > Secrets > Actions
+2. Create an Azure Container App Environment
+3. Create an Azure Container Registry
+4. Create an Azure Container App
+5. Create RBAC and assign a contributor role to a resource group no 1.
+6. Create Secret on GitHub > Settings > Secrets > Actions
    1. AZURE_CREDENTIALS
    2. AZURE_RG
    3. ACR_PWD
@@ -14,7 +15,7 @@
 
 ## Option 1 Using Azure Portal
 
-## Option 2 Using Azure CLI
+## Option 2 Using Azure CLI (Tested on Mac / Linux)
 
 - Create a resource group
 
@@ -22,11 +23,17 @@
 az group create -l eastus -n rg-container-app
 ```
 
+- Create an Azure Container App Environment
+
+```YAML
+az containerapp env create -n aca-env-fyi -g rg-container-app -l eastus
+```
+
 - Create an Azure Container Registry
 
 ```YAML
-az acr create -n acrfyi -g rg-container-app --sku Standard --admin-enabled -l eastus
-az acr build --registry acrfyi.azurecr.io --image nodeapp:v0.1 .
+az acr create -n acrfyi -g rg-container-app --sku Basic --admin-enabled -l eastus
+az acr build --registry acrfyi.azurecr.io --image nodeapp:$(date +%Y.%m.%d).0 .
 ```
 
 - Create an Azure Container App
@@ -45,11 +52,12 @@ az containerapp create -n aca-fyi -g rg-container-app \
 ```YAML
 az ad sp create-for-rbac --name "sp-container-app" --role contributor \
 --scopes /subscriptions/{subscription-id}/resourceGroups/rg-container-app \
---sdk-auth 
+--sdk-auth true --years 100
 ```
 
 - Clean all azure resources
 
 ```YAML
 az group delete -n rg-container-app
+az ad sp delete --id sp-container-app
 ```
