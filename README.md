@@ -15,7 +15,7 @@
 
 ## Option 1 Using Azure Portal
 
-## Option 2 Using Azure CLI (Tested on Mac / Linux)
+## Option 2 Using Azure CLI (Tested on Non-Windows)
 
 - Create a resource group
 
