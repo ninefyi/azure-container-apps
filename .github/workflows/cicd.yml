@@ -44,14 +44,15 @@ jobs:
           regex: false
 
       - name: Display
-        run: cat app/index.html
-        working-directory: ./app
+        run: cat index.html
+        working-directory: app
 
       - name: Find and Replace
         run: sed -i 's/\#version\#/$(date +'%Y.%m.%d')/g' app/index.html
 
       - name: Display
-        run: cat app/index.html
+        run: cat index.html
+        working-directory: app
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
