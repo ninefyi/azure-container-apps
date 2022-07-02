@@ -45,6 +45,7 @@ jobs:
 
       - name: Display
         run: cat app/index.html
+        working-directory: ./app
 
       - name: Find and Replace
         run: sed -i 's/\#version\#/$(date +'%Y.%m.%d')/g' app/index.html
