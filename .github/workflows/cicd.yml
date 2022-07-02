@@ -35,25 +35,6 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y.%m.%d').$BUILD_NUMBER"
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: "#version#"
-          replace: ${{ steps.date.outputs.date }}
-          include: "app/**index.html"
-          regex: false
-
-      - name: Display
-        run: cat index.html
-        working-directory: app
-
-      - name: Find and Replace
-        run: sed -i 's/\#version\#/$(date +'%Y.%m.%d')/g' app/index.html
-
-      - name: Display
-        run: cat index.html
-        working-directory: app
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
