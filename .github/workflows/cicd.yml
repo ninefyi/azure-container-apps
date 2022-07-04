@@ -38,7 +38,7 @@ jobs:
       - name: Replace index.html
         id: replace
         run: sed -i'.bak' -e "s/{#version#}/$(date +%Y.%m.%d)/g" index.html
-        working-directory: ./app
+        working-directory: app
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
