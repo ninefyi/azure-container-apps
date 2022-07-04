@@ -23,8 +23,6 @@ jobs:
     steps:
       - name: Checkout to the branch
         uses: actions/checkout@v2
-        with:
-          path: main
 
       - name: Generate build number
         uses: einaregilsson/build-number@v3
